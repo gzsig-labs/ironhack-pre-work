@@ -27,7 +27,9 @@ const commands = (string, rover) => {
       console.log(commandArray[i] + " is NOT a known command");
     }
   }
+  rover.travelLog.push({ X: rover.x, Y: rover.y });
   console.log(rover);
+  showPath(rover);
 };
 
 // ======================
@@ -56,12 +58,13 @@ function turnRight(rover) {
 function moveForward(rover) {
   console.log("moveForward was called");
   rover.travelLog.push({ X: rover.x, Y: rover.y });
+  showPath(rover)
   let direction = rover.direction;
   console.log(direction);
   if (direction == "N") {
-    rover.y < 9 ? rover.y++ : console.log("You have hit the north boundary");
+    rover.y < 10 ? rover.y++ : console.log("You have hit the north boundary");
   } else if (direction == "E") {
-    rover.x < 9 ? rover.x++ : console.log("You have hit the east boundary");
+    rover.x < 10 ? rover.x++ : console.log("You have hit the east boundary");
   } else if (direction == "S") {
     rover.y > 1 ? rover.y-- : console.log("You have hit the south boundary");
   } else if (direction == "W") {
@@ -72,6 +75,7 @@ function moveForward(rover) {
 function moveBackward(rover) {
   console.log("moveBackward was called");
   rover.travelLog.push({ X: rover.x, Y: rover.y });
+  showPath(rover)
   let direction = rover.direction;
   console.log(direction);
   if (direction == "N") {
@@ -79,10 +83,24 @@ function moveBackward(rover) {
   } else if (direction == "E") {
     rover.x > 1 ? rover.x-- : console.log("You have hit the west boundary");
   } else if (direction == "S") {
-    rover.y < 9 ? rover.y++ : console.log("You have hit the north boundary");
+    rover.y < 10 ? rover.y++ : console.log("You have hit the north boundary");
   } else if (direction == "W") {
-    rover.x < 9 ? rover.x++ : console.log("You have hit the east boundary");
+    rover.x < 10 ? rover.x++ : console.log("You have hit the east boundary");
   }
 }
 
-commands("bb", kata);
+commands("ffrfffrbblffrfffff", kata);
+
+function showPath(rover) {
+  for (let i = 0; i < 10; i++) {
+    let row = [];
+    for (let j = 0; j < 10; j++) {
+      if (rover.y == i && rover.x == j) {
+        row.push("|X");
+      } else {
+        row.push("| ");
+      }
+    }
+    console.log(row.join(""));
+  }
+}
