@@ -12,30 +12,34 @@ let kata = {
 const commands = (string, rover) => {
   string = string.toUpperCase();
   commandArray = string.split("");
-  // console.log(commandArray);
-
   for (let i = 0; i < commandArray.length; i++) {
-    if (commandArray[i] == "F") {
-      moveForward(rover);
-    } else if (commandArray[i] == "B") {
-      moveBackward(kata);
-    } else if (commandArray[i] == "R") {
-      turnRight(kata);
-    } else if (commandArray[i] == "L") {
-      turnLeft(kata);
-    } else {
-      console.log(commandArray[i] + " is NOT a known command");
+    switch (commandArray[i]) {
+      case "F":
+        moveForward(rover);
+        break;
+      case "B":
+        moveBackward(rover);
+        break;
+      case "R":
+        turnRight(rover);
+        break;
+      case "L":
+        turnLeft(rover);
+        break;
+      default:
+        console.log(commandArray[i] + " is NOT a known command");
     }
   }
   rover.travelLog.push({ X: rover.x, Y: rover.y });
   console.log(rover);
-  showPath(rover);
+  showRoute(rover);
 };
 
-// ======================
 function turnLeft(rover) {
   let newIndex = 0;
+  showPoint(rover);
   console.log("turnLeft was called!");
+  console.log("\n");
   if (rover.direction != "N") {
     newIndex = rover.compass.indexOf(rover.direction) - 1;
   } else {
@@ -46,7 +50,9 @@ function turnLeft(rover) {
 
 function turnRight(rover) {
   let newIndex = 0;
+  showPoint(rover);
   console.log("turnRight was called!");
+  console.log("\n");
   if (rover.direction != "W") {
     newIndex = rover.compass.indexOf(rover.direction) + 1;
   } else {
@@ -56,11 +62,11 @@ function turnRight(rover) {
 }
 
 function moveForward(rover) {
-  console.log("moveForward was called");
   rover.travelLog.push({ X: rover.x, Y: rover.y });
-  showPath(rover)
+  showPoint(rover);
+  console.log("moveForward was called");
+  console.log("\n");
   let direction = rover.direction;
-  console.log(direction);
   if (direction == "N") {
     rover.y < 10 ? rover.y++ : console.log("You have hit the north boundary");
   } else if (direction == "E") {
@@ -73,11 +79,11 @@ function moveForward(rover) {
 }
 
 function moveBackward(rover) {
-  console.log("moveBackward was called");
   rover.travelLog.push({ X: rover.x, Y: rover.y });
-  showPath(rover)
+  showPoint(rover);
+  console.log("moveBackward was called");
+  console.log("\n");
   let direction = rover.direction;
-  console.log(direction);
   if (direction == "N") {
     rover.y > 1 ? rover.y-- : console.log("You have hit the south boundary");
   } else if (direction == "E") {
@@ -89,9 +95,7 @@ function moveBackward(rover) {
   }
 }
 
-commands("ffrfffrbblffrfffff", kata);
-
-function showPath(rover) {
+function showPoint(rover) {
   for (let i = 0; i < 10; i++) {
     let row = [];
     for (let j = 0; j < 10; j++) {
@@ -104,3 +108,32 @@ function showPath(rover) {
     console.log(row.join(""));
   }
 }
+
+function showRoute(rover) {
+  let coordinates = rover.travelLog;
+  let orderedLogs = []
+  let cont = 0
+  while(cont < 10){
+  coordinates.forEach(log => {
+    if (log.Y == cont) {
+      orderedLogs.push(log);
+    }
+  });
+  cont++
+  }
+
+console.log(orderedLogs);
+
+
+  let map = [];
+  for (let i = 0; i < 10; i++) {
+    let row = [];
+    for (let i = 0; i < 10; i++) {
+      row.push("| ");
+    }
+    map.push(row);
+  }
+  console.log(map);
+}
+
+commands("ffrfffrbblffrfffff", kata);
