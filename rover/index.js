@@ -38,7 +38,7 @@ const commands = (string, rover) => {
 };
 
 function reset(rover) {
-  console.log("vou resetei");
+  console.log("NEW GAME");
   rover.direction = dirN;
   rover.x = initialX;
   rover.y = initialY;
@@ -126,35 +126,24 @@ function showRoute(rover) {
   }
 }
 
-// commands("ffffffffffrfffffffffffffflffffffffffffffffrfffffffffrfffff", kata);
-
-// Get process.stdin as the standard input object.
 var standard_input = process.stdin;
 
-// Set input character encoding.
 standard_input.setEncoding("utf-8");
 
-// Prompt user to input data in console.
 console.log("INSTRUCTIONS");
 console.log("F: move forward");
 console.log("B: move backward");
 console.log("R: turn right");
 console.log("L: turn left");
 reset(kata);
-// commands("", kata);
-//pointer(kata);
 console.log("Please input the first line of commands");
-// When user input data and click enter key.
 standard_input.on("data", function(data) {
-  // User input exit.
   if (data === "quit\n") {
-    // Program exit.
     console.log("User input complete, program exit.");
     process.exit();
   } else if (data === "reset\n") {
     reset(kata);
   } else {
-    // Print user input in console.
     console.log("Givin command : " + data);
     commands(data, kata);
     console.log("\nPlease input the next line of commands or 'quit' to exit");
