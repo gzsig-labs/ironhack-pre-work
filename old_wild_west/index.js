@@ -11,29 +11,29 @@ function dirReduc(dir) {
 
 function reduce(dir) {
   let res = [];
-  for (i = 0; i < dir.length; i++) {
+  for (i = 0; i < dir.length; i += 1) {
     if (dir[i] == "NORTH" && dir[i + 1] != "SOUTH") {
       res.push(dir[i]);
     } else if (dir[i] == "NORTH" && dir[i + 1] == "SOUTH") {
-      i++;
+      i += 1;
       continue;
     }
     if (dir[i] == "EAST" && dir[i + 1] != "WEST") {
       res.push(dir[i]);
     } else if (dir[i] == "EAST" && dir[i + 1] == "WEST") {
-      i++;
+      i += 1;
       continue;
     }
     if (dir[i] == "SOUTH" && dir[i + 1] != "NORTH") {
       res.push(dir[i]);
     } else if (dir[i] == "SOUTH" && dir[i + 1] == "NORTH") {
-      i++;
+      i += 1;
       continue;
     }
     if (dir[i] == "WEST" && dir[i + 1] != "EAST") {
       res.push(dir[i]);
     } else if (dir[i] == "WEST" && dir[i + 1] == "EAST") {
-      i++;
+      i += 1;
       continue;
     }
   }
