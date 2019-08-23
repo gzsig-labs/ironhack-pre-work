@@ -1,53 +1,5 @@
-Learning goals
-In this exercise, the goal is to apply as many as possible of the concepts you’ve just learned:
-
-how to work with different types of variables,
-how to manipulate nested data structures,
-how to define and invoke functions.
-Introduction
-We are sending a rover to Mars, and we need to be able to move it through a series of instructions sent from the Earth. As the final exercise for this part of the module, you will be leading this project.
-
-
-Getting started and submission
-Open a new CodePen and when ready, send the link to the TA via Slack or email. Don’t wait until you’re entirely done, any time you’re stuck reach out in code-help Slack channel to members of the Ironhack community, to your peers in your cohorts’ Slack channel and then if you didn’t get needed help, to your TAs.
-
-Paste this code as your start in the CodePen you just opened:
-
-// Rover Object Goes Here
-// ======================
-
-
-
-
-// ======================
-function turnLeft(rover){
-  console.log("turnLeft was called!");
-}
-
-function turnRight(rover){
-  console.log("turnRight was called!");
-}
-
-function moveForward(rover){
-  console.log("moveForward was called")
-}
-
-Basic Information
-Our Mars Rover is kind of dumb. By that, we mean it can’t move and turn at the same time. This means that if the rover wants to move to the left, its first move must be a turn. Its next move will then be a step forward.
-
-We will discuss this concept in more detail as we progress through the exercise.
-
-Also, our rover is on a test mission. NASA has placed the rover on a 10x10 grid to make sure all is well before we ship it off to Mars.
-
-At a high level, what we will do in the exercise is the following:
-
-create a function to turn the rover,
-create a function to move the rover forward or backward based on its direction,
-create a function to receive a list of commands and move based off of those commands.
-Does this sound familiar to you? Haven’t we just done something similar in our Final exercise? :wink:
-
 Let’s go!
-----------------------------------------------------
+
 Iteration 1 | The Rover Object
 Create an object to represent the rover. This object will have only one property for now: the direction.
 
